@@ -1,3 +1,4 @@
+from abc import ABC 
 class ModelFactory(object):
     def infer_model_type(self):
         # TODO infers the model given the weight extension
@@ -12,7 +13,7 @@ class ModelFactory(object):
         model = loader.save()
         return model 
     
-class ModelAgnostic(object):
+class ModelAgnostic(ABC):
     def __init__(self, container_url=None, predict_function, init_model, import_type="inference", weight_path):
         self.container_url = container_url
         if not container_url:
@@ -21,11 +22,18 @@ class ModelAgnostic(object):
         self.predict_function = preprocess_function
         self.result = None
         self.import_type = import_type
-    
+        
+    @abstractmethod
     def preprocessing(self, items):
         """
         Must implement this class for your preprocessing needs.
         """
+        pass
+    @abstractmethod
+    def predict(self, formatted_data)
+        pass
+    @abstractmethod
+    def process_result(self, result):
         pass
     
  class KerasModel(ModelAgnostic):
