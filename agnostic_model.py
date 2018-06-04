@@ -11,15 +11,17 @@ class ModelAgnostic(object):
 
     def init_model(self, model_type="inference"):
         if model_type is "inference":
-            res = infer_model_type(self.weight_path)
-            loader = __import__(res, fromlist=[''])
-            return
-        else:
+            model_type = infer_model_type(self.weight_path)
+        loader = __import__(model_type, fromlist=[''])
+        # TODO need to dynamicall load model given the different weights.
+        model = loader.save()
+        return model 
+
 
 
 
     def infer_model_type(self):
         # TODO infers the model given the weight extension
-        extension_to_model_type = {".h5":"keras", ".pth":"pytorch", ".pt":"torch" ".pb":"tensorflow"}
+        extension_to_model_type = {".h5":"keras", ".pth":"torch", ".pt":"torch" ".pb":"tensorflow"}
         result = extension_to_model_type[self.weight_path.split('.')[1]]
         return result
