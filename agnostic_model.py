@@ -16,12 +16,18 @@ class ModelAgnostic(object):
         # TODO need to dynamicall load model given the different weights.
         model = loader.save()
         return model 
-
-
-
-
+    
     def infer_model_type(self):
         # TODO infers the model given the weight extension
         extension_to_model_type = {".h5":"keras", ".pth":"torch", ".pt":"torch" ".pb":"tensorflow"}
         result = extension_to_model_type[self.weight_path.split('.')[1]]
         return result
+    
+    def preprocessing(self, items):
+        """
+        Must implement this class for your preprocessing needs.
+        """
+        pass
+    
+ class KerasModel(ModelAgnostic):
+    def __init__(self, container_url
