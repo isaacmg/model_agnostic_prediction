@@ -14,12 +14,11 @@ class ModelFactory(object):
         return model 
     
 class ModelAgnostic(ABC):
-    def __init__(self, container_url=None, predict_function, init_model, import_type="inference", weight_path):
+    def __init__(self, container_url=None, import_type="inference", weight_path):
         self.container_url = container_url
         if not container_url:
             self.weight_path = weight_path
             self.model = init_model(weight_path, import_type)
-        self.predict_function = preprocess_function
         self.result = None
         self.import_type = import_type
         
@@ -37,4 +36,8 @@ class ModelAgnostic(ABC):
         pass
     
  class KerasModel(ModelAgnostic):
-    def __init__(self, container_url
+    def __init__(self, weight_path, load_type):
+        super(KerasModel, self).__init__(self, None, "keras", weight_path)
+        
+        
+        
