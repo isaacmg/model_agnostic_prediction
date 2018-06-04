@@ -1,4 +1,4 @@
-from abc import ABC 
+from abc import ABC
 class ModelFactory(object):
     def infer_model_type(self):
         # TODO infers the model given the weight extension
@@ -11,8 +11,8 @@ class ModelFactory(object):
         loader = __import__(model_type, fromlist=[''])
         # TODO need to dynamicall load model given the different weights.
         model = loader.save()
-        return model 
-    
+        return model
+
 class ModelAgnostic(ABC):
     def __init__(self, container_url=None, import_type="inference", weight_path):
         self.container_url = container_url
@@ -21,7 +21,7 @@ class ModelAgnostic(ABC):
             self.model = init_model(weight_path, import_type)
         self.result = None
         self.import_type = import_type
-        
+
     @abstractmethod
     def preprocessing(self, items):
         """
@@ -34,10 +34,23 @@ class ModelAgnostic(ABC):
     @abstractmethod
     def process_result(self, result):
         pass
-    
+
  class KerasModel(ModelAgnostic):
     def __init__(self, weight_path, load_type):
+        import keras
         super(KerasModel, self).__init__(self, None, "keras", weight_path)
-        
-        
-        
+        self.load_type = load_type
+        if load_type is "complete":
+            self.model = keras.models.load_model(weight_path)
+        else:
+            model = create_model()
+            self.model = model.load_weights(weight_path)
+
+    def create_model(self):
+        """
+        Function which creates the model to load. 
+        """
+        pass
+
+    def preprocessing(self, items):
+        pass
