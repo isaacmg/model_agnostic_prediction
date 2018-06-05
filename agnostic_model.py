@@ -43,14 +43,19 @@ class ModelAgnostic(ABC):
         if load_type is "complete":
             self.model = keras.models.load_model(weight_path)
         else:
-            model = create_model()
+            model = create_model()s
             self.model = model.load_weights(weight_path)
 
     def create_model(self):
         """
-        Function which creates the model to load. 
+        Function which creates the model to load.
+        Implement this function if you saved just the model weights and
+        not the architecture.
         """
         pass
 
     def preprocessing(self, items):
         pass
+
+    def predict(self, formatted_data, batch_size=None):
+        self.result = self.model.predict(formatted_data, batch_size=batch_size)
