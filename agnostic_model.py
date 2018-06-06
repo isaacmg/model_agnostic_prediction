@@ -2,7 +2,7 @@ from abc import ABC
 class ModelFactory(object):
     def infer_model_type(self):
         # TODO infers the model given the weight extension
-        extension_to_model_type = {".h5":"keras", ".pth":"torch", ".pt":"torch" ".pb":"tensorflow"}
+        extension_to_model_type = {".h5":"keras", ".pth":"torch", ".pt":"torch", ".pb":"tensorflow"}
         result = extension_to_model_type[self.weight_path.split('.')[1]]
         return result
     def init_model(self, model_type="inference"):
@@ -14,36 +14,40 @@ class ModelFactory(object):
         return model
 
 class ModelAgnostic(ABC):
-    def __init__(self, container_url=None, import_type="inference", weight_path):
+    def __init__(self,  weight_path,  container_url=None, import_type="inference"):
         self.container_url = container_url
         if not container_url:
             self.weight_path = weight_path
-            self.model = init_model(weight_path, import_type)
+            self.model = self.create_model(weight_path, import_type)
         self.result = None
         self.import_type = import_type
 
-    @abstractmethod
+    def create_model(self): 
+        pass 
+
     def preprocessing(self, items):
         """
         Must implement this class for your preprocessing needs.
         """
         pass
-    @abstractmethod
-    def predict(self, formatted_data)
+
+    def predict(self, formatted_data):
         pass
-    @abstractmethod
+
     def process_result(self, result):
         pass
 
- class KerasModel(ModelAgnostic):
+class KerasModel(ModelAgnostic):
     def __init__(self, weight_path, load_type):
-        import keras
-        super(KerasModel, self).__init__(self, None, "keras", weight_path)
+        self.keras = __import__('keras')
+        super(KerasModel, self).__init__(None, "keras", weight_path)
         self.load_type = load_type
         if load_type is "complete":
-            self.model = keras.models.load_model(weight_path)
+            self.model = self.keras.models.load_model(weight_path)
+        elif load_type is "create":
+            self.model = self.create_model()
         else:
-            model = create_model()s
+            model = self.create_model()
             self.model = model.load_weights(weight_path)
 
     def create_model(self):
