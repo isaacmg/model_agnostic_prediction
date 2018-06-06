@@ -44,7 +44,6 @@ def upload():
         save_to=os.path.join(app.config['UPLOAD_FOLDER'], filename)
         #save file
         file.save(save_to)
-        print(save_to)
         #pass file to model and return bool
         model_preprocessing=model.preprocessing(save_to)
         #print(model_preprocessing)

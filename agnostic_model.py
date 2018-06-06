@@ -18,7 +18,7 @@ class ModelAgnostic(ABC):
         self.container_url = container_url
         if not container_url:
             self.weight_path = weight_path
-            self.model = self.create_model(weight_path, import_type)
+            self.model = self.create_model()
         self.result = None
         self.import_type = import_type
 
@@ -40,8 +40,10 @@ class ModelAgnostic(ABC):
 class KerasModel(ModelAgnostic):
     def __init__(self, weight_path, load_type):
         self.keras = __import__('keras')
+        self.tf = __import__('tensorflow')
         super(KerasModel, self).__init__(None, "keras", weight_path)
         self.load_type = load_type
+        global model
         if load_type is "complete":
             self.model = self.keras.models.load_model(weight_path)
         elif load_type is "create":
@@ -49,6 +51,8 @@ class KerasModel(ModelAgnostic):
         else:
             model = self.create_model()
             self.model = model.load_weights(weight_path)
+        global graph
+        self.graph = self.tf.get_default_graph()
 
     def create_model(self):
         """
@@ -62,4 +66,5 @@ class KerasModel(ModelAgnostic):
         pass
 
     def predict(self, formatted_data, batch_size=None):
-        self.result = self.model.predict(formatted_data, batch_size=batch_size)
+        with self.graph.as_default():
+            self.result = self.model.predict(formatted_data, batch_size=batch_size)

@@ -33,5 +33,8 @@ class SimpleResNet50(KerasModel):
         return x
 
     def process_result(self):
+        """
+        Handles the result
+        """
         decode_predictions = self.keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
