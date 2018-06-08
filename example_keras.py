@@ -2,7 +2,7 @@ from agnostic_model import KerasModel
 
 
 class ChexNet(KerasModel):
-    def __init__():
+    def __init__(self, weight_path):
         super(ChexNet, self).__init__(self, "keras", weight_path)
 
     def create_model(self, model_type):

@@ -68,3 +68,9 @@ class KerasModel(ModelAgnostic):
     def predict(self, formatted_data, batch_size=None):
         with self.graph.as_default():
             self.result = self.model.predict(formatted_data, batch_size=batch_size)
+
+class PytorchModel(ModelAgnostic):
+    def __init__(self, weight_path):
+        self.torch = __import__('torch')
+        super().__init__(weight_path, "PyTorch")
+        

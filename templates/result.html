@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
    <body>
-
-	<p>{{ result }} </p>
+	{% for res in result.split('),') %}
+	<p>{{ res}} </p>
+	{% endfor %}
 
    </body>
 </html>
