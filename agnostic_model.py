@@ -73,4 +73,14 @@ class PytorchModel(ModelAgnostic):
     def __init__(self, weight_path):
         self.torch = __import__('torch')
         super().__init__(weight_path, "PyTorch")
+
+    def create_model(self):
+        
+
+    def predict(self, formatted_data):
+        self.model(formatted_data)
+    
+    def preprocessing(self, items):
+        pass 
+    
         
