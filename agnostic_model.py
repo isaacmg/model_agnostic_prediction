@@ -7,7 +7,7 @@ class ModelFactory(object):
         return result
     def init_model(self, model_type="inference"):
         if model_type is "inference":
-            model_type = infer_model_type(self.weight_path)
+            model_type = self.infer_model_type()
         loader = __import__(model_type, fromlist=[''])
         # TODO need to dynamicall load model given the different weights.
         model = loader.save()
@@ -83,6 +83,18 @@ class PytorchModel(ModelAgnostic):
         self.model(formatted_data)
     
     def preprocessing(self, items):
+        pass
+
+class Caffe2(ModelAgnostic):
+    def __init__(self, weight_path, weight_path2):
+        with open("init_net.pb") as f:
+            self.init_net = f.read()
+        with open("predict_net.pb") as f:
+            self.predict_net = f.read()  
+
+class SciKit(ModelAgnostic):
+    def __init__(self):
         pass 
+
     
         
