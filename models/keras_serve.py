@@ -12,14 +12,14 @@ class KerasModel(ModelAgnostic):
         if load_type is "complete":
             self.model = self.keras.models.load_model(weight_path)
         elif load_type is "create":
-            self.model = self.create_model()
+            self.model = self.create_model(weight_path)
         else:
             model = self.create_model()
             self.model = model.load_weights(weight_path)
         global graph
         self.graph = self.tf.get_default_graph()
 
-    def create_model(self):
+    def create_model(self, weight_path):
         """
         Function which creates the model to load.
         Implement this function if you saved just the model weights and

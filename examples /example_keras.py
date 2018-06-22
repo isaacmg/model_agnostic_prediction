@@ -1,16 +1,23 @@
 import sys 
 sys.path.append("..")
 from models.keras_serve import KerasModel
-
+from chexnet_files import model_factory
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
         super(ChexNet, self).__init__(self, "keras", weight_path)
 
-    def create_model(self, model_type):
+    def create_model(self, model_type, weight_path):
         """
-        Make the model
+        Function to Make the model
         """
+        class_names = ["Atelectasis","Cardiomegaly", "Effusion", "Infiltration", "Mass", "Nod", "Pneumonia", "Pneumothorax",
+        "Consolidation", "Edema", "Emphysema","Fibrosis", "Pleural_Thickening" ,"Hernia"]
+        self.model = model_factory.get_model(
+        class_names,
+        model_name= "DenseNet121",
+        use_base_weights=False,
+        weights_path=weight_path)
         pass
 
     def preprocessing(self, items):
@@ -20,7 +27,7 @@ class SimpleResNet50(KerasModel):
     def __init__(self, weight_path):
         super(SimpleResNet50, self).__init__(weight_path, "create")
 
-    def create_model(self):
+    def create_model(self, weight_path):
         model = self.keras.applications.resnet50.ResNet50(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
         return model
 
