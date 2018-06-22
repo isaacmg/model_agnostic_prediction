@@ -1,4 +1,6 @@
-from agnostic_model import KerasModel
+import sys 
+sys.path.append("..")
+from models.keras_serve import KerasModel
 
 
 class ChexNet(KerasModel):
