@@ -1,19 +1,21 @@
 import sys 
 sys.path.append("..")
 from models.keras_serve import KerasModel
-from chexnet_files.model_factory import model_factory
+from examples2.chexnet_files.model_factory import ModelFactory
+from examples2.chexnet_files.model_factory import get_model
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
-        super(ChexNet, self).__init__(self, "keras", weight_path)
+        super(ChexNet, self).__init__("keras", weight_path)
 
-    def create_model(self, model_type, weight_path):
+    def create_model(self, weight_path):
         """
         Function to Make the model
         """
         class_names = ["Atelectasis","Cardiomegaly", "Effusion", "Infiltration", "Mass", "Nod", "Pneumonia", "Pneumothorax",
         "Consolidation", "Edema", "Emphysema","Fibrosis", "Pleural_Thickening" ,"Hernia"]
-        self.model = model_factory.get_model(
+        model_factory = ModelFactory()
+        self.model = get_model(
         class_names,
         model_name= "DenseNet121",
         use_base_weights=False,
