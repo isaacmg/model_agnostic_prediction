@@ -6,7 +6,7 @@ from examples2.chexnet_files.model_factory import get_model
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
-        super(ChexNet, self).__init__("keras", weight_path)
+        super(ChexNet, self).__init__(weight_path, "keras")
 
     def create_model(self, weight_path):
         """
@@ -16,14 +16,14 @@ class ChexNet(KerasModel):
         "Consolidation", "Edema", "Emphysema","Fibrosis", "Pleural_Thickening" ,"Hernia"]
         model_factory = ModelFactory()
         self.model = get_model(
-        class_names,
+        the_model = model_factory.models_,
+        class_names=class_names,
         model_name= "DenseNet121",
         use_base_weights=False,
         weights_path=weight_path)
-        pass
 
     def preprocessing(self, items):
-        pass
+        
 
 class SimpleResNet50(KerasModel):
     def __init__(self, weight_path):
@@ -49,3 +49,5 @@ class SimpleResNet50(KerasModel):
         """
         decode_predictions = self.keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
+
+#ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")

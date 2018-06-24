@@ -69,12 +69,12 @@ def get_model(the_model, class_names, model_name="DenseNet121", use_base_weights
 
     base_model_class = getattr(
         importlib.import_module(
-            f"keras.applications.{the_model.models_[model_name]['module_name']}"
+            f"keras.applications.{the_model[model_name]['module_name']}"
         ),
         model_name)
 
     if input_shape is None:
-        input_shape = the_model.models_[model_name]["input_shape"]
+        input_shape = the_model[model_name]["input_shape"]
 
     img_input = Input(shape=input_shape)
 
