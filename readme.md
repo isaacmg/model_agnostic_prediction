@@ -16,6 +16,12 @@ To use create a new class that extends your model's backend subclass. You will h
 
 * Provide a standard template which users can extend for their model's specific functionality.
 
+# Examples 
+
+* [CheXNet Keras Deployment on Heroku using model agnostic loader](https://github.com/isaacmg/example_keras_heroku)
+
+* [ResNet50 Example](https://github.com/isaacmg/model_agnostic_prediction/blob/143af897897e675b5cfaff60b6d5212963f8cff8/examples2/example_keras.py#L28)
+
 
 
 
