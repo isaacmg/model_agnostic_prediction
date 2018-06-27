@@ -14,8 +14,7 @@ class KerasModel(ModelAgnostic):
         elif load_type is "create":
             self.model = self.create_model(weight_path)
         else:
-            model = self.create_model(weight_path)
-            self.model = model.load_weights(weight_path)
+            self.model = self.create_model(weight_path)
         global graph
         self.graph = self.tf.get_default_graph()
 

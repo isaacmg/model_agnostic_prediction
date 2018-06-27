@@ -2,3 +2,8 @@
 *.pth.tar
 *.pth
 *.pb
+__pycache__
+*.h5
+*.h5
+
+*.pyc

@@ -3,26 +3,49 @@ sys.path.append("..")
 from models.keras_serve import KerasModel
 from examples2.chexnet_files.model_factory import ModelFactory
 from examples2.chexnet_files.model_factory import get_model
+import numpy as np
+import pandas as pd
+from keras.utils import Sequence
+from PIL import Image
+from skimage.transform import resize
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
-        super(ChexNet, self).__init__(weight_path, "keras")
+        self.class_names =  ["Atelectasis","Cardiomegaly", "Effusion", "Infiltration", "Mass", "Nod", "Pneumonia", "Pneumothorax",
+        "Consolidation", "Edema", "Emphysema","Fibrosis", "Pleural_Thickening" ,"Hernia"]
+        super(ChexNet, self).__init__(weight_path, "create")
+        
 
     def create_model(self, weight_path):
         """
         Function to Make the model
         """
-        class_names = ["Atelectasis","Cardiomegaly", "Effusion", "Infiltration", "Mass", "Nod", "Pneumonia", "Pneumothorax",
-        "Consolidation", "Edema", "Emphysema","Fibrosis", "Pleural_Thickening" ,"Hernia"]
+        
         model_factory = ModelFactory()
-        self.model = get_model(
+        model = get_model(
         the_model = model_factory.models_,
-        class_names=class_names,
+        class_names=self.class_names,
         model_name= "DenseNet121",
         use_base_weights=False,
         weights_path=weight_path)
+        return model 
 
-    def preprocessing(self, items):
+    def preprocessing(self, image_path):
+        image = Image.open(image_path)
+        image_array = np.asarray(image.convert("RGB"))
+        image_array = image_array / 255.
+        image_array = resize(image_array, (224,224))
+        #preprocess_input = self.keras.applications.resnet50.preprocess_input
+        
+        image_array = np.expand_dims(image_array, axis=0)
+        return image_array
+    
+    def process_result(self):
+        index = 0 
+        for i in self.result[0][0][0]:
+            print(i)
+            print(self.class_names[index])
+            index +=1  
         
 
 class SimpleResNet50(KerasModel):
@@ -50,4 +73,8 @@ class SimpleResNet50(KerasModel):
         decode_predictions = self.keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
 
-#ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")
+d = ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")
+result = d.preprocessing("image_example/dock.jpg")
+d.predict(result)
+d.process_result()
+
