@@ -3,9 +3,10 @@ sys.path.append("..")
 from agnostic_model import ModelAgnostic
 
 class KerasModel(ModelAgnostic):
-    def __init__(self, weight_path, load_type):
+    def __init__(self, weight_path, load_type, backend="tensorflow"):
         self.keras = __import__('keras')
-        self.tf = __import__('tensorflow')
+        self.backend = backend 
+        self.tf = __import__(backend)
         super(KerasModel, self).__init__(None, "keras", weight_path)
         self.load_type = load_type
         global model
@@ -16,7 +17,8 @@ class KerasModel(ModelAgnostic):
         else:
             self.model = self.create_model(weight_path)
         global graph
-        self.graph = self.tf.get_default_graph()
+        if backend is "tensorflow":  
+            self.graph = self.tf.get_default_graph()
 
     def create_model(self, weight_path):
         """
@@ -30,5 +32,8 @@ class KerasModel(ModelAgnostic):
         pass
 
     def predict(self, formatted_data, batch_size=None):
-        with self.graph.as_default():
+        if self.backend is "tensorflow":
+            with self.graph.as_default():
+                self.result = self.model.predict(formatted_data, batch_size=batch_size)
+        else:
             self.result = self.model.predict(formatted_data, batch_size=batch_size)

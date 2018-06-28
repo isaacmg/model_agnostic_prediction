@@ -39,15 +39,5 @@ class ModelAgnostic(ABC):
 
     def process_result(self, result):
         pass
-
-
-
-
-
-
-class SciKit(ModelAgnostic):
-    def __init__(self):
-        pass 
-
     
         
