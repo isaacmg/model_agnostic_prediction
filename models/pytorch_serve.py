@@ -2,6 +2,7 @@ import sys
 sys.path.append("..")
 from agnostic_model import ModelAgnostic
 import torch
+from collections import OrderedDict
 class PytorchModel(ModelAgnostic):
     def __init__(self, weight_path, load_type):
         self.torch = __import__('torch')
