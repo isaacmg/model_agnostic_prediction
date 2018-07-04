@@ -5,7 +5,7 @@ import tensorflow as tf
 
 class TensorflowModel(ModelAgnostic):
     def __init__(self, weight_path, load_type, backend="tensorflow"):
-        self.model = ""
+        # TODO IMPLEMENT
 
     def create_model(self, weight_path):
         """
@@ -13,7 +13,7 @@ class TensorflowModel(ModelAgnostic):
         Implement this function if you saved just the model weights and
         not the architecture.
         """
-        pass
+        pass    
 
     def preprocessing(self, items):
         pass
