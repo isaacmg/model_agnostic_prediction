@@ -1,8 +1,7 @@
-import sys 
-sys.path.append("..")
-from models.keras_serve import KerasModel
-from examples2.chexnet_files.model_factory import ModelFactory
-from examples2.chexnet_files.model_factory import get_model
+
+from model_agnostic.models.keras_serve import KerasModel
+from model_agnostic.examples2.chexnet_files.model_factory import ModelFactory
+from model_agnostic.examples2.chexnet_files.model_factory import get_model
 import numpy as np
 import pandas as pd
 from keras.utils import Sequence

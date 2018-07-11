@@ -1,7 +1,7 @@
 from abc import ABC
 
 class ModelFactory(object):
-    def infer_model_type(self):
+    def infer_model_type(self, weight_path):
         # TODO infers the model given the weight extension
         extension_to_model_type = {".h5":"keras", ".pth":"torch", ".pt":"torch", ".pb":"tensorflow"}
         result = extension_to_model_type[self.weight_path.split('.')[1]]
