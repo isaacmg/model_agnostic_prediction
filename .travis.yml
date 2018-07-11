@@ -1,0 +1,16 @@
+language: python
+python:
+  - "3.6"
+
+install:
+  - pip install -r requirements.txt
+  - python setup.py install
+  - pip install keras
+  - pip install codecov
+
+script:
+  - coverage run tests/test_keras_example.py
+
+
+after_success:
+  - codecov

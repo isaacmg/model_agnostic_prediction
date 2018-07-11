@@ -1,10 +1,7 @@
-import sys 
-sys.path.append("..")
-from models.pytorch_serve import PytorchModel
+# TODO create simple PyTorch example for unitests 
 
-class ChexNetPyTorch(PytorchModel):
+from model_agnostic.models.pytorch_serve import PytorchModel
+
+class ExamplePredict(PytorchModel):
     def __init__(self, weight_path):
         super().__init__(self, weight_path)
-    
-    def preprocessing():
-        
