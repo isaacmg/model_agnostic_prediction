@@ -1,7 +1,7 @@
 
 from model_agnostic.models.keras_serve import KerasModel
-from model_agnostic.examples2.chexnet_files.model_factory import ModelFactory
-from model_agnostic.examples2.chexnet_files.model_factory import get_model
+from model_agnostic.example_models.chexnet_files.model_factory import ModelFactory
+from model_agnostic.examples_models.chexnet_files.model_factory import get_model
 import numpy as np
 import pandas as pd
 from keras.utils import Sequence
@@ -48,7 +48,7 @@ class ChexNet(KerasModel):
         
 
 class SimpleResNet50(KerasModel):
-    def __init__(self, weight_path):
+    def __init__(self, weight_path=None):
         super(SimpleResNet50, self).__init__(weight_path, "create")
 
     def create_model(self, weight_path):
@@ -72,8 +72,9 @@ class SimpleResNet50(KerasModel):
         decode_predictions = self.keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
 
-d = ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")
-result = d.preprocessing("image_example/dock.jpg")
-d.predict(result)
-d.process_result()
+# TODO MOVE TO TEST FILE
+#d = ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")
+#result = d.preprocessing("image_example/dock.jpg")
+#d.predict(result)
+#d.process_result()
 
