@@ -1,12 +1,13 @@
 
 from model_agnostic.models.keras_serve import KerasModel
 from model_agnostic.example_models.chexnet_files.model_factory import ModelFactory
-from model_agnostic.examples_models.chexnet_files.model_factory import get_model
+from model_agnostic.example_models.chexnet_files.model_factory import get_model
 import numpy as np
 import pandas as pd
 from keras.utils import Sequence
 from PIL import Image
 from skimage.transform import resize
+import keras
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
@@ -52,7 +53,7 @@ class SimpleResNet50(KerasModel):
         super(SimpleResNet50, self).__init__(weight_path, "create")
 
     def create_model(self, weight_path):
-        model = self.keras.applications.resnet50.ResNet50(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
+        model = keras.applications.resnet50.ResNet50(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
         return model
 
     def preprocessing(self, image_path):
