@@ -14,3 +14,9 @@ script:
 
 after_success:
   - codecov
+
+deploy:
+  provider: pypi
+  user: "paramount_east"
+  password:
+    secure: "RdQ5YyS3/KCOQUIN+0gPo3xAkczLMaQ1st9KUx5jCIq9+M90zQpXekkK2oAStrG7eSkFfGVprPvTkEUj4NZAEQVBu1tXxeAZ3Q/B2Czik+vvssUdXcX7l/h6OM/6cdJBgvoSZvQQoWQdP0uac4eSE9stA0OJ4At6qB6uAwTNT5lZKKCxVHPolYpQ7CsG+VSfUq9OJm72pCLOweNxBtig6LcCiAxHHMmpg4a+nmmQb6/pwsAsMeS5yZ5j9ugXD3RTq61O663+2Jae0LkFtxi5AENIxkbW0kSbbRxBS/46W1ci4gNMkCvVv5Yfjjjt3Pv2GFA/6ZhKudTqJoDgx3eU7OhYAj9R/7nFvep6qQCT4o3jJONxBgcRNFicZ6zustPSmU+Y6a+81+0V5LpJE106FKX8AmHoJqVll/85PafUYYFADaJp+lHFj8NJerSm2bJP5fIiMtVjHjWcG509Bb0UvNZDllU1/rWslERIBUrTeQCnqz7WV/PbMP8552lx8BLa/wqw1Z1DKk7nYZBHV/ewPj/tfzp4MePWARMo6JoNHVBz7MUUrNsnYl02BIX/KDBj2mG3gpJ8oSy4I3CRC+IdtpmpZLM0CP8UxvqHvNxQjNKXXlT8abAMkXWq5zY4taRx8WJhugz9tIObRAKDz53NlOROfC0DmJepPn8T2tVIB2o="
