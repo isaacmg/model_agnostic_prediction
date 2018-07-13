@@ -2,3 +2,4 @@ tensorflow
 pandas
 Pillow
 scikit-image
+Setup tools

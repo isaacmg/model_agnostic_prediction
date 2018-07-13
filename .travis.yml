@@ -6,6 +6,7 @@ install:
 - python setup.py install
 - pip install keras
 - pip install codecov
+- python3 setup.py sdist bdist_wheel
 script:
 - coverage run tests/test_keras_example.py
 after_success:

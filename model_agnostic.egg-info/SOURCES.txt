@@ -1,0 +1,16 @@
+README.md
+setup.py
+model_agnostic/agnostic_model.py
+model_agnostic.egg-info/PKG-INFO
+model_agnostic.egg-info/SOURCES.txt
+model_agnostic.egg-info/dependency_links.txt
+model_agnostic.egg-info/top_level.txt
+model_agnostic/example_models/example_keras.py
+model_agnostic/example_models/example_pytorch.py
+model_agnostic/example_models/flask_example.py
+model_agnostic/example_models/chexnet_files/model_factory.py
+model_agnostic/models/caffe2_serve.py
+model_agnostic/models/keras_serve.py
+model_agnostic/models/pytorch_serve.py
+model_agnostic/models/scikit_serve.py
+model_agnostic/models/tf_serve.py
