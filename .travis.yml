@@ -2,13 +2,14 @@ language: python
 python:
 - '3.6'
 install:
-- pip3 install -r requirements.txt
-- pip3 install keras
-- pip3 install codecov
-- python3 setup.py sdist bdist_wheel
-- python3 setup.py install
+- pip install -r requirements.txt
+- pip install keras
+- pip install codecov
+- pip install . 
+- python setup.py sdist bdist_wheel
+
 script:
-- python3 tests/test_keras_example.py
+- coverage run tests/test_keras_example.py
 after_success:
 - codecov
 deploy:
