@@ -8,7 +8,7 @@ install:
 - python3 setup.py sdist bdist_wheel
 - python3 setup.py install
 script:
-- coverage run tests/test_keras_example.py
+- python3 tests/test_keras_example.py
 after_success:
 - codecov
 deploy:
