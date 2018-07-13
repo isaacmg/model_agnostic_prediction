@@ -58,7 +58,7 @@ class SimpleResNet50(KerasModel):
 
     def preprocessing(self, image_path):
         image = getattr(__import__('keras.preprocessing', fromlist=['image']), 'image')
-        preprocess_input = self.keras.applications.resnet50.preprocess_input
+        preprocess_input = keras.applications.resnet50.preprocess_input
         import numpy as np 
         img = image.load_img(image_path, target_size=(224, 224))
         x = image.img_to_array(img)
@@ -70,7 +70,7 @@ class SimpleResNet50(KerasModel):
         """
         Handles the result. In this case returns the top three results.
         """
-        decode_predictions = self.keras.applications.resnet50.decode_predictions
+        decode_predictions = keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
 
 # TODO MOVE TO TEST FILE
