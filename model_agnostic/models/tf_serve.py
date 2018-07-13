@@ -6,7 +6,8 @@ import tensorflow as tf
 class TensorflowModel(ModelAgnostic):
     def __init__(self, weight_path, load_type, backend="tensorflow"):
         # TODO IMPLEMENT
-
+        self.tf = "s"
+        
     def create_model(self, weight_path):
         """
         Function which creates the model to load.
