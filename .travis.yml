@@ -1,22 +1,17 @@
 language: python
 python:
-  - "3.6"
-
+- '3.6'
 install:
-  - pip install -r requirements.txt
-  - python setup.py install
-  - pip install keras
-  - pip install codecov
-
+- pip install -r requirements.txt
+- python setup.py install
+- pip install keras
+- pip install codecov
 script:
-  - coverage run tests/test_keras_example.py
-
-
+- coverage run tests/test_keras_example.py
 after_success:
-  - codecov
-
+- codecov
 deploy:
   provider: pypi
-  user: "paramount_east"
+  user: paramount_east
   password:
-    secure: "RdQ5YyS3/KCOQUIN+0gPo3xAkczLMaQ1st9KUx5jCIq9+M90zQpXekkK2oAStrG7eSkFfGVprPvTkEUj4NZAEQVBu1tXxeAZ3Q/B2Czik+vvssUdXcX7l/h6OM/6cdJBgvoSZvQQoWQdP0uac4eSE9stA0OJ4At6qB6uAwTNT5lZKKCxVHPolYpQ7CsG+VSfUq9OJm72pCLOweNxBtig6LcCiAxHHMmpg4a+nmmQb6/pwsAsMeS5yZ5j9ugXD3RTq61O663+2Jae0LkFtxi5AENIxkbW0kSbbRxBS/46W1ci4gNMkCvVv5Yfjjjt3Pv2GFA/6ZhKudTqJoDgx3eU7OhYAj9R/7nFvep6qQCT4o3jJONxBgcRNFicZ6zustPSmU+Y6a+81+0V5LpJE106FKX8AmHoJqVll/85PafUYYFADaJp+lHFj8NJerSm2bJP5fIiMtVjHjWcG509Bb0UvNZDllU1/rWslERIBUrTeQCnqz7WV/PbMP8552lx8BLa/wqw1Z1DKk7nYZBHV/ewPj/tfzp4MePWARMo6JoNHVBz7MUUrNsnYl02BIX/KDBj2mG3gpJ8oSy4I3CRC+IdtpmpZLM0CP8UxvqHvNxQjNKXXlT8abAMkXWq5zY4taRx8WJhugz9tIObRAKDz53NlOROfC0DmJepPn8T2tVIB2o="
+    secure: cNnt596kls29fB1X7xkwI8XH+GCECZoMebkVoOsI8V+Oj1rr8DKN3cvzYsFja96O92G+xflgNPQ11gFEtM5F+2v0XplPH/lLyOG3Ma8GVUpFBk27kfGL3wLLynGiBVG+R7BzhQh86fOZ214qMzupsNZ3D7zAfBs+dDgcV9WF/4DKJdNMPOnKBSunJt84ydlkhxJyIjpWCiSm3s6PdaySg4DwVnlICDsxbFNhyhz5yxsINO6ATFXhBJ98hGR85u9yJStpLd5hLV33Dk5VsBhxagytV4OhlQU96ga7xNK/YcWdDO4F0bFVP3zfIc7cpOYl71Li6WycNX+Rz2LP8iwakFlM1CMrUR6ahGntik64Z+xr5nE/8DEzRKBdZ9T6W9QgUGDtfyR9XDFRSh5FpTZc9JqqWJuOTlhDrYXNxiRnOimj/2XD3EnJyNpCq43vxrLOPHNhKYIetvVFNcfiWBSCnVaXymS/FeG9MYheg3C66oVKvbqGYH4GZhj4i/R836VP+T1ya9a91NOj4wwchaFtnqEayfw53qeftAEI8piZX+ly6eUANlwQfL3tgNbu/xhguDuAu3b6L9wFnOKT6GJi1hw+XJltUZYYBQbF1myVrdD+pQFSZjgL6wffUShQqQWztm94+8OVLA0mmEr66hJrIq5ImJfnZ6d0bomtvqGG0tI=

@@ -23,6 +23,8 @@ To use create a new class that extends your model's backend subclass. You will h
 
 * [ResNet50 Example](https://github.com/isaacmg/model_agnostic_prediction/blob/143af897897e675b5cfaff60b6d5212963f8cff8/examples2/example_keras.py#L28)
 
+* [S2I PYtorch example](https://github.com/isaacmg/s2i_pytorch_chex)
+
 
 
 
