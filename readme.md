@@ -11,7 +11,11 @@ To install run
 ` pip install model_agnostic `
 
 You can also build from the source by (though we strongly reccomend using pip)
+
 ` git clone https://github.com/isaacmg/model_agnostic_prediction.git`
+
+`cd model_agnostic_prediction`
+
 ` python setup.py build install ` 
 
 To use create a new class that extends your model's backend subclass. Models are located in the model folder in the "frameworkName_serve" format. 
@@ -40,6 +44,10 @@ class NewPyTorch(PytorchModel):
 * Same high level functions regardless of backend framework (i.e. preprocess, predict, process_response)
 
 * Provide a standard template which users can extend for their model's specific functionality.
+
+* Easy to use preprocessing functions that user can tweak depending on their model. 
+
+* A model library (of filled out templates pre-setup) so user can deploy standard models easily onto Flask/Django. 
 
 # Examples 
 
