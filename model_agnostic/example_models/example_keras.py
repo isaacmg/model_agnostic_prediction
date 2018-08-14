@@ -4,10 +4,12 @@ from model_agnostic.example_models.chexnet_files.model_factory import ModelFacto
 from model_agnostic.example_models.chexnet_files.model_factory import get_model
 import numpy as np
 import pandas as pd
+import keras
+from keras.preprocessing import image as image_keras
 from keras.utils import Sequence
 from PIL import Image
 from skimage.transform import resize
-import keras
+
 
 class ChexNet(KerasModel):
     def __init__(self, weight_path):
@@ -49,6 +51,9 @@ class ChexNet(KerasModel):
         
 
 class SimpleResNet50(KerasModel):
+    """
+    Example to load the a built in Keras ResNet model
+    """
     def __init__(self, weight_path=None):
         super(SimpleResNet50, self).__init__(weight_path, "create")
 
@@ -57,14 +62,13 @@ class SimpleResNet50(KerasModel):
         return model
 
     def preprocessing(self, image_path):
-        image = getattr(__import__('keras.preprocessing', fromlist=['image']), 'image')
+        # Ge ResNet50 preprocessing function
         preprocess_input = keras.applications.resnet50.preprocess_input
-        import numpy as np 
-        img = image.load_img(image_path, target_size=(224, 224))
-        x = image.img_to_array(img)
+        formatted_image = image_keras.load_img(image_path, target_size=(224, 224))
+        x = image_keras.img_to_array(formatted_image)
         x = np.expand_dims(x, axis=0)
-        x = preprocess_input(x)
-        return x
+        preprocessed_image = preprocess_input(x)
+        return  preprocessed_image
 
     def process_result(self):
         """
@@ -73,9 +77,5 @@ class SimpleResNet50(KerasModel):
         decode_predictions = keras.applications.resnet50.decode_predictions
         return decode_predictions(self.result, top=3)[0]
 
-# TODO MOVE TO TEST FILE
-#d = ChexNet("chexnet_files/brucechou1983_CheXNet_Keras_0.3.0_weights.h5")
-#result = d.preprocessing("image_example/dock.jpg")
-#d.predict(result)
-#d.process_result()
+
 
