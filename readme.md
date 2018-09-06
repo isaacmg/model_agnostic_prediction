@@ -39,7 +39,7 @@ class NewPyTorch(PytorchModel):
 ## Project Goals
 * Allow users to pre-load model weights from any framework with any save configuration
 
-* Works with common frameworks (GraphPipe, Kubebflow).
+* Works with common frameworks (PyTorch, Keras, Tensorflow, CNTK).
 
 * Same high level functions regardless of backend framework (i.e. preprocess, predict, process_response)
 
