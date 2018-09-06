@@ -39,7 +39,7 @@ class NewPyTorch(PytorchModel):
 ## Project Goals
 * Allow users to pre-load model weights from any framework with any save configuration
 
-* Works with common frameworks.
+* Works with common frameworks (GraphPipe, Kubebflow).
 
 * Same high level functions regardless of backend framework (i.e. preprocess, predict, process_response)
 
@@ -55,7 +55,7 @@ class NewPyTorch(PytorchModel):
 
 * [ResNet50 Example](https://github.com/isaacmg/model_agnostic_prediction/blob/143af897897e675b5cfaff60b6d5212963f8cff8/examples2/example_keras.py#L28)
 
-* [S2I PYTorch example](https://github.com/isaacmg/s2i_pytorch_chex)
+* [S2I PyTorch example](https://github.com/isaacmg/s2i_pytorch_chex)
 
 
 
