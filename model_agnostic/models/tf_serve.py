@@ -15,16 +15,14 @@ class TensorflowModel(ModelAgnostic):
         Implement this function if you saved just the model weights and
         not the architecture.
         """
-        self.saver.restore(self.session, tf.train.load_checkpoint(weight_path))
-        
-
-        
+        self.model = self.saver.restore(self.session, tf.train.load_checkpoint(weight_path))
 
     def preprocessing(self, items):
         pass
 
     def predict(self, formatted_data, batch_size=None):
-        self.model.run()
+        feed_dict = {}
+        self.session.run(self.model, feed_dict)
 
     def export_tf_serving(self):
         pass 
