@@ -7,7 +7,7 @@ class PytorchModel(ModelAgnostic):
     def __init__(self, weight_path, load_type=None):
         self.torch = __import__('torch')
         super().__init__(weight_path, "PyTorch")
-        if load_type is "full":
+        if load_type == "full":
             self.model = torch.load(weight_path)
             
         else:
