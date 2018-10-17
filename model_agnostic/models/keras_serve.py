@@ -14,12 +14,12 @@ class KerasModel(ModelAgnostic):
 
         super(KerasModel, self).__init__(None, "keras", weight_path)
         self.load_type = load_type
-        if load_type is "complete":
+        if load_type == "complete":
             self.model = keras.models.load_model(weight_path)
         else:
             self.model = self.create_model(weight_path)
             
-        if backend is "tensorflow":  
+        if backend == "tensorflow":  
             self.tf = __import__(backend)
             self.graph = self.tf.get_default_graph()
 
@@ -41,7 +41,7 @@ class KerasModel(ModelAgnostic):
         :param NumPY array formatted_data: This is typically a numpy array returned from the preprocessing function. 
         :param int batch_size: The number of samples to process at once. None will default to 1. 
         """
-        if self.backend is "tensorflow":
+        if self.backend == "tensorflow":
             with self.graph.as_default():
                 self.result = self.model.predict(formatted_data, batch_size=batch_size)
         else:

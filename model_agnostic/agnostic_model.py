@@ -7,7 +7,7 @@ class ModelFactory(object):
         result = extension_to_model_type[self.weight_path.split('.')[1]]
         return result
     def create_model(self, model_type="inference"):
-        if model_type is "inference":
+        if model_type == "inference":
             model_type = self.infer_model_type()
         loader = __import__(model_type, fromlist=[''])
         # TODO need to dynamicall load model given the different weights.
