@@ -32,7 +32,7 @@ class PytorchModel(ModelAgnostic):
         pass 
 
     def predict(self, formatted_data):
-        self.model(formatted_data)
+        self.result = self.model(formatted_data)
     
     def preprocessing(self, items):
         pass
