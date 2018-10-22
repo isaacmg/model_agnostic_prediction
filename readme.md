@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/isaacmg/model_agnostic_prediction.svg?branch=master)](https://travis-ci.org/isaacmg/model_agnostic_prediction)
 
-This provides any easy model instantiation for Flask, Django, and other production Python projects.
-It allows you to easily load models and perform predictions without having to worry about the different types.
+Model Agnostic provides an easy model instantiation for Flask, Django, and other production Python projects and also supports exporting to model to other common serving platforms.
+It allows you to easily load models and perform predictions without having to worry about the different types. Moreover, it helps you organize your code for easy updating and maintainance.
 
 ## Usage 
 
@@ -30,7 +30,7 @@ class NewPyTorch(PytorchModel):
         # Apply necessary pre-processing here for your data here.
         pass
     def process_result(self):
-        # TODO IMPLEMENT 
+        # Implement this function if have any post-processing needs of predictions.
         pass
 
 ```
@@ -47,7 +47,10 @@ class NewPyTorch(PytorchModel):
 
 * Easy to use preprocessing functions that user can tweak depending on their model. 
 
-* A model library (of filled out templates pre-setup) so user can deploy standard models easily onto Flask/Django. 
+* A model library (of filled out templates pre-setup) so user can deploy standard models easily onto Flask/Django.
+
+* Easy model exporting to ONNX, TF-Serving
+
 
 # Examples 
 
