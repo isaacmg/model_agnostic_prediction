@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.org/isaacmg/model_agnostic_prediction.svg?branch=master)](https://travis-ci.org/isaacmg/model_agnostic_prediction)
 
-Model Agnostic provides an easy model instantiation for Flask, Django, and other production Python projects and also supports exporting to model to other common serving platforms.
-It allows you to easily load models and perform predictions without having to worry about the different types. Moreover, it helps you organize your code for easy updating and maintainance.
+Model Agnostic (MA) provides an easy model instantiation for Flask, Django, and other production Python projects. It also supports exporting to model other common serving platforms. Finally MA. allows you to easily load models and perform predictions without having to worry about the different types. Moreover, it helps you organize your code for easy updating and maintainance.
 
 ## Usage 
 
