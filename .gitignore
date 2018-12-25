@@ -11,3 +11,4 @@ build
 *.whl
 *.egg
 *.gz
+.DS_Store

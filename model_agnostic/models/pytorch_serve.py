@@ -37,4 +37,25 @@ class PytorchModel(ModelAgnostic):
     def preprocessing(self, items):
         pass
     
+    def to_onnx(self, save_path, formatted_data, precision=3, export_params=True, verify=False):
+        torch_out = torch.onnx._export(self,             # model being run
+                               formatted_data,                       # model input (or a tuple for multiple inputs)
+                               save_path, # where to save the model (can be a file or file-like object)
+                               export_params=export_params)
+        if verify: 
+            self.verify_onnx(torch_out, formatted_data, precision, save_path)
+
+    def verify_onnx(self, torch_out, input_data, precision, model_path):
+        import onnx
+        import caffe2.python.onnx.backend as onnx_caffe2_backend
+        import numpy as np
+        model = onnx.load(model_path)
+        prepared_backend = onnx_caffe2_backend.prepare(model)
+        W = {model.graph.input[0].name: input_data.data.numpy()}
+        c2_out = prepared_backend.run(W)[0]
+        np.testing.assert_almost_equal(torch_out.data.cpu().numpy(), c2_out, decimal=precision)
+        print("Model passed percision test")
+
+
+            
     
