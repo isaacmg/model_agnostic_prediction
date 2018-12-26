@@ -27,6 +27,7 @@ class PytorchModel(ModelAgnostic):
             else:
                 self.model = torch.nn.DataParallel(self.model)
                 self.model.load_state_dict(checkpoint['state_dict'])
+        self.model.eval()
 
     def create_model(self):
         pass 

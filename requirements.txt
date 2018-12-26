@@ -3,4 +3,5 @@ pandas
 Pillow
 scikit-image
 setuptools
-MonkeyType
+torchvision
+torch
