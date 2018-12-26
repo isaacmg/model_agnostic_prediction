@@ -2,9 +2,8 @@ language: python
 python:
 - '3.6'
 install:
-- pip install -r requirements.txt
-- pip install keras
-- pip install codecov
+- pip install -q -r requirements.txt
+- pip install -q codecov
 - pip install .
 - python setup.py sdist bdist_wheel
 script:
