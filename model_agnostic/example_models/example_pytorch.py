@@ -8,10 +8,12 @@ import torch
 
 class ExamplePredict(PytorchModel):
     def __init__(self, weight_path):
-        super().__init__(self, weight_path)
+        #Don't use super as it has its own custom loader super().__init__(self, weight_path)
+        self.model = self.create_model()
+        self.model.load_weights(weight_path)
 
     def create_model(self):
-        model = Darknet("config/yolov3.cfg", img_size=416)
+        model = Darknet("model_agnostic/example_models/darknet/yolov3.cfg", img_size=416)
         cuda = torch.cuda.is_available()
         self.Tensor = torch.cuda.FloatTensor if cuda else torch.FloatTensor
         return model 
@@ -21,6 +23,7 @@ class ExamplePredict(PytorchModel):
         input_img = Variable(input_image.type(self.Tensor))
         return input_img
 
+ExamplePredict("model_agnostic/example_models/darknet/yolov3.weights")
 
 
     

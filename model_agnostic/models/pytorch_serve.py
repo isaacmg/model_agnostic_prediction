@@ -1,6 +1,6 @@
 import sys 
 sys.path.append("..")
-from agnostic_model import ModelAgnostic
+from model_agnostic.agnostic_model import ModelAgnostic 
 import torch
 from collections import OrderedDict
 class PytorchModel(ModelAgnostic):

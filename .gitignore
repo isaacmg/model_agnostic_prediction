@@ -12,3 +12,7 @@ build
 *.egg
 *.gz
 .DS_Store
+*.weights
+*.egg-info
+model_agnostic.egg-info/SOURCES.txt
+model_agnostic.egg-info/PKG-INFO
