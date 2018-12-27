@@ -46,9 +46,9 @@ class ExamplePredict(PytorchModel):
     def process_result(self):
         pass
 
-e = ExamplePredict("model_agnostic/example_models/darknet/yolov3.weights")
-data = e.preprocessing("model_agnostic/example_models/image_example/dock.jpg")
-e.predict(data)
+#e = ExamplePredict("model_agnostic/example_models/darknet/yolov3.weights")
+#data = e.preprocessing("model_agnostic/example_models/image_example/dock.jpg")
+#e.predict(data)
 
 
 

@@ -5,7 +5,7 @@ from setuptools import find_packages
 setup(
     name='model_agnostic',
     version='0.37dev',
-    packages=['model_agnostic', 'model_agnostic.models', 'model_agnostic.example_models', 'model_agnostic.example_models.chexnet_files'],
+    packages=['model_agnostic', 'model_agnostic.models', 'model_agnostic.example_models', 'model_agnostic.example_models.chexnet_files', 'model_agnostic.example_models.darknet'],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description='A package to easily serve machine learning models',
 
