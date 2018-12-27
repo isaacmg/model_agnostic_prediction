@@ -2,12 +2,15 @@ language: python
 python:
 - '3.6'
 install:
+- wget https://pjreddie.com/media/files/yolov3.weights -O tests/yolov3.weights
 - pip install -q -r requirements.txt
 - pip install -q codecov
 - pip install .
 - python setup.py sdist bdist_wheel
+
 script:
 - coverage run tests/test_keras_example.py
+- coverage run tests/test_pytorch_example.py
 after_success:
 - codecov
 deploy:
