@@ -5,11 +5,13 @@
 
 from model_agnostic.models.pytorch_serve import PytorchModel
 from model_agnostic.example_models.darknet.models import Darknet
+from model_agnostic.example_models.darknet.utils import non_max_suppression
 from torch.autograd import Variable
 from PIL import Image
 import numpy as np
 import torch 
 from skimage.transform import resize
+
 
 class ExamplePredict(PytorchModel):
     def __init__(self, weight_path):
@@ -43,8 +45,13 @@ class ExamplePredict(PytorchModel):
         input_img = Variable(input_img.type(self.Tensor))
         return input_img.unsqueeze(0)
     
-    def process_result(self):
-        pass
+    def process_result(self, confidence_threshold=.8, iou_threshold=.4):
+        detection = non_max_suppression(self.result, 80, confidence_threshold, .4)
+        if detection: 
+             unique_labels = detection[:, -1].cpu().unique()
+        img_detection = []
+        img_detection.extend(detection)
+        return detection
 
 #e = ExamplePredict("model_agnostic/example_models/darknet/yolov3.weights")
 #data = e.preprocessing("model_agnostic/example_models/image_example/dock.jpg")
