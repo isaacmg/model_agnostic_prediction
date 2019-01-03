@@ -1,8 +1,6 @@
 # A simple PyTorch modeL for unittest []
 # This model is taken from https://github.com/eriklindernoren/PyTorch-YOLOv3 original 
 # implementation by Erik Linder-Norén, article by Redmon, Joseph and Farhadi, Ali
- 
-
 from model_agnostic.models.pytorch_serve import PytorchModel
 from model_agnostic.example_models.darknet.models import Darknet
 from model_agnostic.example_models.darknet.utils import non_max_suppression
