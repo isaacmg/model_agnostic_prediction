@@ -10,7 +10,7 @@ class ModelFactory(object):
         if model_type == "inference":
             model_type = self.infer_model_type()
         loader = __import__(model_type, fromlist=[''])
-        # TODO need to dynamicall load model given the different weights.
+        # TODO need to dynamically load model given the different weights.
         model = loader.save()
         return model
     def manage_models(self):
